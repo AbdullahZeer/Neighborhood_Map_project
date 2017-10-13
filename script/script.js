@@ -84,7 +84,7 @@ var ViewModel = function() {
       animation: google.maps.Animation.DROP,
       title: name,
     });
-
+    //change marker color source(https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker)
     current.mapMarker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
     current.showPlaceInfo = function() {
