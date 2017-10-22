@@ -96,7 +96,7 @@ var markerEvent = function(marker,place) {
     m.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
   });
   marker.setIcon('http://maps.google.com/mapfiles/ms/icons/blue-dot.png');
-}
+};
 
 //this function return image for a place
 var getImgeFormStreetView = function(street, city) {
@@ -218,4 +218,4 @@ $(function() {
 
 var googleMapsApiError = function () {
   alert("Ooops Google Maps load error");
-}
+};
