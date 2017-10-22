@@ -1,0 +1,30 @@
+
+
+#map{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+.card{
+  position:fixed;
+  width: 20rem;
+  margin-top: 80px;
+  opacity: 0.8;
+}
+
+.place:hover{
+  background-color: #A9B4C2;
+  font-size: bold;
+  cursor: pointer;
+}
+
+@media only screen and (max-width: 500px) {
+  .streetview{
+    display: none;
+  }
+  .card{
+    width: 13rem;
+  }
+
+}
