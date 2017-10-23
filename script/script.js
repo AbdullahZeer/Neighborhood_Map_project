@@ -8,11 +8,14 @@ var mapOptions = {
   },
   zoom: 12,
 };
-map = new google.maps.Map(document.getElementById('map'), mapOptions);
+$( document ).ready(function() {
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
-placeInfo = new google.maps.InfoWindow({
-  maxWidth: 220
+  placeInfo = new google.maps.InfoWindow({
+    maxWidth: 220
+  });
 });
+
 
 
 //model
