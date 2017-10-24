@@ -8,7 +8,7 @@ var mapOptions = {
   },
   zoom: 12,
 };
-$( document ).ready(function() {
+$(document).ready(function() {
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
 
   placeInfo = new google.maps.InfoWindow({
@@ -67,20 +67,20 @@ var makeMarker = function(place) {
   var marker;
 
   marker = new google.maps.Marker({
-  map:map,
-  position: new google.maps.LatLng(place.lat(),place.lng()),
-  animation: google.maps.Animation.DROP,
-  title: name,
+    map: map,
+    position: new google.maps.LatLng(place.lat(), place.lng()),
+    animation: google.maps.Animation.DROP,
+    title: name,
   });
-//change marker color source(https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker)
+  //change marker color source(https://stackoverflow.com/questions/7095574/google-maps-api-3-custom-marker-color-for-default-dot-marker)
   marker.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
 
   markers.push(marker);
 
-  marker.addListener('click',function() {
+  marker.addListener('click', function() {
     map.setCenter(marker.getPosition());
     placeInfo.setContent(place.information());
-    placeInfo.open(map,marker);
+    placeInfo.open(map, marker);
     markers.forEach(function(m) {
       m.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
     });
@@ -90,11 +90,11 @@ var makeMarker = function(place) {
 };
 
 
-var markerEvent = function(marker,place) {
+var markerEvent = function(marker, place) {
 
   map.setCenter(marker.getPosition());
   placeInfo.setContent(place.information());
-  placeInfo.open(map,marker);
+  placeInfo.open(map, marker);
   markers.forEach(function(m) {
     m.setIcon('http://maps.google.com/mapfiles/ms/icons/red-dot.png');
   });
@@ -133,9 +133,6 @@ var ViewModel = function() {
     // wiki API request
     var searchUrl = "http://en.wikipedia.org/w/api.php?action=opensearch&search=" + current.name() + "&format=json&callback=wikiCallBack";
     var listHTML = "<ul>links</ul>";
-    var requestTimeout = setTimeout(function() {
-      current.wikilist('request error');
-    }, 2000);
 
     $.ajax({
       url: searchUrl,
@@ -157,7 +154,9 @@ var ViewModel = function() {
 
           current.wikilist(listHTML);
         }
-        clearTimeout(requestTimeout);
+      },
+      error: function(err) {
+        current.wikilist('request error');
       }
     });
 
@@ -171,7 +170,7 @@ var ViewModel = function() {
     current.marker = makeMarker(current);
 
     current.showPlaceInfo = function() {
-      markerEvent(current.marker,current);
+      markerEvent(current.marker, current);
     };
   };
 
@@ -219,6 +218,6 @@ $(function() {
   ko.applyBindings(new ViewModel());
 });
 
-var googleMapsApiError = function () {
+var googleMapsApiError = function() {
   alert("Ooops Google Maps load error");
 };
